@@ -23,7 +23,7 @@
    <br/>
    
 <img src="images/Submenu0.png" width="400" height="300">
-<img src="images/Submenu1t.png" width="400" height="300">
+<img src="images/Submenu1.png" width="400" height="300">
    
  </li>
  
