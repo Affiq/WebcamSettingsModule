@@ -75,6 +75,7 @@
   <h2> Instantiate a Settings Module</h2>
   <p> A Settings Module will then need to be instantiated, and the SettingsContainer will then be set to our previously created Settings Container.The settings module is responsible for reading in the individual frames of the webcam, generating the landmarks for the hand and determining the index-tip pointer, which would then be passed to the Settings Container to detect component interaction and drawing functions.</p>
   </br> 
+  
         new_settings = SettingsModule.SettingsModule()
         new_settings.settings_container = settings_container
  </li>
