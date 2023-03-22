@@ -44,7 +44,7 @@
 <ol>
  <li>
   <h2> Instantiate a Settings Container</h2>
-  <p> A SettingsContainer object must first be instantiated to create an object that will hold all our components and form the settings menu. It does not take any parameters by default.</p>
+  <p> A SettingsContainer object must first be instantiated to create an object that will hold all our components and form the settings menu. It does not take any parameters by default. The SettingsContainer is responsible for holding all the necessary components and drawing the menus and the submenus. It is also responsible for trigerring the drawing and pointer detection methods for the individual components.</p>
   </br> 
   > settings_container = sc.SettingsContainer()
  </li>
@@ -59,7 +59,24 @@
   > settings_container.add_component(volume)
   > settings_container.add_component(brightness)
   > settings_container.add_component(show_hands) </li>
- </ol>
+ 
+ 
+  <li>
+  <h2> Instantiate a Settings Module</h2>
+  <p> A Settings Module will then need to be instantiated, and the SettingsContainer will then be set to our previously created Settings Container.The settings module is responsible for reading in the individual frames of the webcam, generating the landmarks for the hand and determining the index-tip pointer, which would then be passed to the Settings Container to detect component interaction and drawing functions.</p>
+  </br> 
+ > new_settings = SettingsModule.SettingsModule()
+ > new_settings.settings_container = settings_container
+ > new_settings.webcam_recognition() 
+ </li>
+ 
+ <li>
+ <h2> Run the webcam recognition function </h2>
+ <p> </p>
+ 
+ /li>
+ 
+ 
 
 
 
