@@ -34,7 +34,7 @@
  
   <li>
    <h2> Exiting the Settings </h2>
-   <p> To exit the settings, the user simply has to point to the top-left of the screen. To stop the web-camera for running, the user will have to press Q</p>
+   <p> To exit the settings, the user simply has to point to the top-left of the screen. To stop the web-camera from running, the user will have to press Q.</p>
  </li>
   
 </ol>
@@ -46,35 +46,40 @@
   <h2> Instantiate a Settings Container</h2>
   <p> A SettingsContainer object must first be instantiated to create an object that will hold all our components and form the settings menu. It does not take any parameters by default. The SettingsContainer is responsible for holding all the necessary components and drawing the menus and the submenus. It is also responsible for trigerring the drawing and pointer detection methods for the individual components.</p>
   </br> 
-  > settings_container = sc.SettingsContainer()
+  
+          settings_container = sc.SettingsContainer()
+
  </li>
  
   <li>
   <h2> Instantiate the components</h2>
   <p> One must first instantiate a set of components - slider bars and toggle bars in this case - and then add them to SettingsContainer. In this scenario, we create two slider bar components (Volume with a default value of 50, and Brightness with a default value of 20) and a toggle bar component (Show Hands with labels Show and Hide, and a default value of True) before adding them to the SettingsContainer.</p>
   </br> 
-  > volume = sb.SliderBar("Volume", 50)
-  > brightness = sb.SliderBar("Brightness", 20)
-  > show_hands = tc.ToggleComponent("Show Hands", "Show", "Hide", True)
-  > settings_container.add_component(volume)
-  > settings_container.add_component(brightness)
-  > settings_container.add_component(show_hands) </li>
+  
+        volume = sb.SliderBar("Volume", 50)
+        brightness = sb.SliderBar("Brightness", 20)
+        show_hands = tc.ToggleComponent("Show Hands", "Show", "Hide", True)
+        settings_container.add_component(volume)
+        settings_container.add_component(brightness)
+        settings_container.add_component(show_hands) 
+        
+  </li>
  
  
   <li>
   <h2> Instantiate a Settings Module</h2>
   <p> A Settings Module will then need to be instantiated, and the SettingsContainer will then be set to our previously created Settings Container.The settings module is responsible for reading in the individual frames of the webcam, generating the landmarks for the hand and determining the index-tip pointer, which would then be passed to the Settings Container to detect component interaction and drawing functions.</p>
   </br> 
- > new_settings = SettingsModule.SettingsModule()
- > new_settings.settings_container = settings_container
- > new_settings.webcam_recognition() 
+        new_settings = SettingsModule.SettingsModule()
+        new_settings.settings_container = settings_container
  </li>
  
  <li>
  <h2> Run the webcam recognition function </h2>
- <p> </p>
+ <p> Finally, run the SettingModule's webcam_recognition function to begin the setting adjustment module.</p>
  
- /li>
+        new_settings.webcam_recognition()
+ </li>
  
  
 
