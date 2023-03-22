@@ -20,6 +20,11 @@
   <li> 
    <h2> Submenu Navigation </h2>
    <p> Users can navigate through the submenus by pointing at the top-left of the screen. Submenus consist of different groups of components. Depending on the number of settings, the program may only have one submenu and hence submenu navigation may not be required. </p>
+   <br/>
+   
+<img src="images/Submenu0.png" width="400" height="300">
+<img src="images/Submenu1t.png" width="400" height="300">
+   
  </li>
  
   <li> 
