@@ -37,6 +37,9 @@ class RectangleButton(sc.SettingsComponent):
                       self.bottom_right,
                       bgr, 2)
 
+    def get_y_centre(self):
+        return int((self.y2 + self.y1)/2)
+
     # Detect if the pointer is within the bounds
     def detect_button_point(self, pointer_co_ords):
         px, py = pointer_co_ords[0], pointer_co_ords[1]

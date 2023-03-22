@@ -63,7 +63,6 @@ class SliderBar(sc.SettingsComponent):
         cv2.putText(frame, self.name + ": " + str(self.value), (20, self.y-20),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 1, cv2.LINE_AA)
 
-
     # Detect if pointer is within the slider bounds
     def detect_pointer(self, pointer_coords):
         px, py = pointer_coords[0], pointer_coords[1]

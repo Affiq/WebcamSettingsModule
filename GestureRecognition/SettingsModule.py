@@ -5,11 +5,11 @@ import numpy as np
 import mediapipe as mp
 import SettingsComponents.SliderBar as sb
 import SettingsComponents.SettingsContainer as sc
+import SettingsComponents.ToggleComponent as tc
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 
-
-class HandGestureRecognition:
+class SettingsModule:
     mpHands = None
     hands = None
     mpDraw = None
@@ -21,6 +21,7 @@ class HandGestureRecognition:
         self.__initialise_mp()
         self.__initialise_model()
         self.__initialise_class_names()
+        self.settings_container = None
         print("Hand recognition class initialised")
 
     def __initialise_mp(self):
@@ -44,32 +45,9 @@ class HandGestureRecognition:
         # Initialize the webcam for Hand Gesture Recognition Python project
         cap = cv2.VideoCapture(0)
 
-        # We want to initialise the slider bar setting here...
-        settings_container = sc.SettingsContainer()
-
-        volume = sb.SliderBar("Volume", 50)
-        brightness = sb.SliderBar("Brightness", 20)
-        gamma = sb.SliderBar("Gamma", 25)
-
-        settings_container.add_component(volume)
-        settings_container.add_component(brightness)
-        settings_container.add_component(gamma)
-
-        rgb = sb.SliderBar("RGB", 0)
-        saturation = sb.SliderBar("Saturation", 40)
-        motion_blur = sb.SliderBar("Motion Blur", 30)
-
-        settings_container.add_component(rgb)
-        settings_container.add_component(saturation)
-        settings_container.add_component(motion_blur)
-
-        confidence = sb.SliderBar("Confidence", 100)
-        lift = sb.SliderBar("Lift", 20)
-
-        settings_container.add_component(confidence)
-        settings_container.add_component(lift)
-
         # Main loop calculates landmarks and hand gestures...
+        index_tip = [0, 0]
+        gesture = None
         while True:
             # Read each frame from the webcam and get dimensions
             _, frame = cap.read()
@@ -80,11 +58,10 @@ class HandGestureRecognition:
             framergb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             # volume.draw_slider_bar(frame)
             # settings_container.draw_buttons(frame)
-            index_tip = [0, 0]
 
             # Get hand landmark prediction
             result = self.hands.process(framergb)
-            gesture = None
+            self.settings_container.show_settings(frame, index_tip, gesture)
 
             # post process the result
             if result.multi_hand_landmarks:
@@ -107,11 +84,10 @@ class HandGestureRecognition:
                     className = self.classNames[classID]
                     gesture = className
 
-                    # show the prediction on the frame
-                    cv2.putText(frame, className, (10, 50), cv2.FONT_HERSHEY_SIMPLEX,
-                                1, (0, 0, 255), 2, cv2.LINE_AA)
+                    # show the gesture prediction on the frame
+                    # cv2.putText(frame, className, (10, 50), cv2.FONT_HERSHEY_SIMPLEX,
+                    #            1, (0, 0, 255), 2, cv2.LINE_AA)
 
-            settings_container.show_settings(frame, index_tip, gesture)
             # Show the final output
             cv2.imshow("Output", frame)
             if cv2.waitKey(1) == ord('q'):
