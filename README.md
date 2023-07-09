@@ -1,6 +1,7 @@
 # WebcamSettingsModule
 <p> The webcam settings module is a tool created for developers to set up various settings components like volume or brightness. These components are displayed on the screen for users to adjust. This is especially useful in situations where the user doesn't have an interface for changing controls (like in a Raspberry Pi project with no peripherals) but does have a camera available. </p>
 </br>
+<p> Implemented using Python, Mediapipe for Hand Landmarking and OpenCV to draw on-screen components.</p>
 
 ![Structure](images/Structure.drawio.png)
 
